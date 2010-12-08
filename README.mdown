@@ -1,20 +1,20 @@
 This is my platform installer to get rvm + ruby + nginx with passenger + mongodb up and running!
 
-== Prerequisites
+## Prerequisites
 Ubuntu 10.10 Maverick Meerkat (tested) - 10.04 will probably work as well, but I haven't tested it.
 
-== Install
+## Install
 On a stock Ubuntu 10.10, go to a terminal and run:
  
 
     sudo bash -l -c "`wget --no-check-certificate -O - https://github.com/pzol/platform-install/raw/master/bootstrap.sh`"
 
-== Ruby and RVM
+## Ruby and RVM
 The installer does a system-wide installation of RVM and installs Ruby 1.9.2-p0
 
-== Paths
+## Paths
 I use /opt to install the apps, you can customize them in the babushka-deps if you want.
 
-== Adding ruby web-apps
+## Adding ruby web-apps
 TODO
 
