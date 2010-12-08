@@ -20,7 +20,7 @@ dep 'mongodb.setup' do
 	preconfigure { sudo "mkdir -p #{prefix}" }
   install { 
 		log_shell "Copying files", "cp -r * #{prefix}", :sudo => true 
-		render_erb 'init.d/mongodb', :to => '/etc/init.d/mongodb', :perms => '755', :sudo => true
+		render_erb 'mongodb/mongodb.init.d.erb', :to => '/etc/init.d/mongodb', :perms => '755', :sudo => true
 		sudo 'update-rc.d mongodb defaults'
 	}
 end

@@ -1,7 +1,6 @@
 #!/bin/bash -l
 
-babushka_install_path="$HOME/xenia_install"
-babushka_xenia_path="$babushka_install_path/xenia"
+babushka_install_path="$HOME/platform-install"
 mkdir -p $babushka_install_path
 
 function is_babushka_installed {
@@ -19,24 +18,12 @@ function install_babushka {
 	fi
 }
 
-function babushka_xenia {
-	if [[ -s "$babushka_xenia_path" ]]; then
-		current_dir=`pwd`
-		cd $babushka_xenia_path
-		babushka 'xenia'
-		cd $current_dir
-	else
-		echo "Missing xenia sources in $babushka_xenia_path, get them first (I won't do that for you)"
-	fi
-}
-
-function babushka_cleanup {
-	rm -rf $babushka_xenia_path
+function babushka_platform {
+	babushka 'platform'
 }
 
 function babushka_run {
 	install_babushka && 
-	babushka_xenia
-	# babushka_cleanup
+	babushka_platform
 }
 

@@ -1,6 +1,6 @@
 meta 'nginx' do
 	template {
-		helper(:passenger_default_user) { "xenia" }
+		helper(:passenger_default_user) { "deploy" }
 		helper(:passenger_root) { Babushka::GemHelper.gem_path_for('passenger') }
 		helper(:log_path) { var(:log_path) }
 		helper(:nginx_prefix) { var(:nginx_prefix) }
