@@ -1,7 +1,7 @@
 meta 'user' do
 	template {
 		met? { grep /^#{basename}\:/, '/etc/passwd' }
-		meet { sudo "useradd -G deploy --create-home --system -s /bin/false #{basename}" }
+		meet { sudo "useradd -g deploy --create-home --system -s /bin/false #{basename}" }
 	}
 end
 

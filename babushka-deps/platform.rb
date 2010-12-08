@@ -1,5 +1,5 @@
 dep 'platform', :for => :linux  do
-	requires 'ruby_with_gems', 'mongodb.setup', 'nginx'
+	requires 'ruby_with_gems', 'mongodb.setup', 'deploy.user', 'nginx'
 end
 
 dep 'deploy.user' do

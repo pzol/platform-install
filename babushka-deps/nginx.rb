@@ -24,6 +24,7 @@ dep 'webserver.nginx' do
 end
 
 dep 'conf.nginx' do
+	requires 'deploy.user'
 	met? { File.exists? conf_path }
   meet { 
 		render_erb "nginx/nginx.conf", :to => conf_path, :sudo => true 
