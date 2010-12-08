@@ -19,7 +19,7 @@ function install_babushka {
 }
 
 function babushka_platform {
-	babushka 'platform'
+	babushka -y 'platform'
 }
 
 function babushka_run {

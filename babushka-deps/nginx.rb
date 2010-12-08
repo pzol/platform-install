@@ -14,7 +14,7 @@ meta 'nginx' do
 end
 
 dep 'webserver.nginx' do
-	requires 'libcurl4-openssl-dev.managed'
+	requires 'libcurl4-openssl-dev.managed', 'passenger.gem'
 
 	met? { File.executable?(var(:nginx_prefix) / 'sbin/nginx') }
 	meet {
