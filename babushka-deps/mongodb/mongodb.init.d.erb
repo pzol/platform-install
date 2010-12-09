@@ -20,9 +20,9 @@ NAME=mongod
 DATA=/var/data/mongodb
 DAEMON=/opt/mongodb/bin/$NAME
 LOGFILE=/var/log/mongodb/mongod.log
-DAEMON_ARGS="--quiet --dbpath $DATA --logpath $LOGFILE --fork"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
+DAEMON_ARGS="--quiet --dbpath $DATA --logpath $LOGFILE --pidfilepath $PIDFILE --fork"
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0

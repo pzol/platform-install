@@ -12,15 +12,21 @@ dep 'mongodb.setup' do
 	source "http://fastdl.mongodb.org/linux/mongodb-linux-#{`uname -m`.chomp}-1.6.4.tgz" 
   provides 'mongod', 'mongo'
 
+	helper(:copy_files) { log_shell "Copying files", "cp -r * #{prefix}", :sudo => true }
+	helper(:init_d_exists?) { File.exists?("/etc/init.d/mongodb") }
+	helper(:render_init_d) { 
+		render_erb 'mongodb/mongodb.init.d.erb', :to => '/etc/init.d/mongodb', :perms => '755', :sudo => true 
+		sudo 'update-rc.d mongodb defaults'
+	}
+
 	met? {
 		provided? and
-		File.exists?("/etc/init.d/mongodb")
+		init_d_exists?
 	}
 
 	preconfigure { sudo "mkdir -p #{prefix}" }
   install { 
-		log_shell "Copying files", "cp -r * #{prefix}", :sudo => true 
-		render_erb 'mongodb/mongodb.init.d.erb', :to => '/etc/init.d/mongodb', :perms => '755', :sudo => true
-		sudo 'update-rc.d mongodb defaults'
+		copy_files 		unless provided?
+		render_init_d unless init_d_exists?
 	}
 end

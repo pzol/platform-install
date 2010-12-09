@@ -18,7 +18,8 @@ dep 'webserver.nginx' do
 
 	met? { File.executable?(var(:nginx_prefix) / 'sbin/nginx') }
 	meet {
-		log_shell "Installing nginx via passenger", "#{passenger_root}/bin/passenger-install-nginx-module --prefix='#{var(:nginx_prefix)}' --auto-download --extra-configure-flags='--with-http_ssl_module' --auto"
+		log_shell "Downloading and installing nginx via passenger",
+	 						"#{passenger_root}/bin/passenger-install-nginx-module --prefix='#{var(:nginx_prefix)}' --auto-download --extra-configure-flags='--with-http_ssl_module' --auto"
 		shell "rm #{conf_path}", :sudo => true	# remove the default config
 	}	
 end
