@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-rvm_install_path="$HOME/rvm_install"
+rvm_install_path="$install_dir/rvm_install"
 mkdir -p $rvm_install_path
 
 function is_rvm_installed {

@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-babushka_install_path="$HOME/platform-install"
+babushka_install_path="$install_dir"
 mkdir -p $babushka_install_path
 
 function is_babushka_installed {
