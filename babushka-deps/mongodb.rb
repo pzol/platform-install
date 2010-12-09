@@ -28,6 +28,6 @@ dep 'mongodb.setup' do
   install { 
 		copy_files 		unless provided?
 		render_init_d unless init_d_exists?
+		sudo "/etc/init.d/mongodb start" 
 	}
-	postconfigure { sudo "/etc/init.d/mongodb start" }
 end
