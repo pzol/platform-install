@@ -1,4 +1,4 @@
-temp_dir=`mktemp -d platform.XXXX'
+temp_dir=`mktemp -d platform.XXXX`
 cd $temp_dir
 wget --no-check-certificate -nv https://github.com/pzol/platform-install/tarball/master
 tar xzf master
