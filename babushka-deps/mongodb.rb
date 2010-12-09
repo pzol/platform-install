@@ -29,4 +29,5 @@ dep 'mongodb.setup' do
 		copy_files 		unless provided?
 		render_init_d unless init_d_exists?
 	}
+	postconfigure { sudo "/etc/init.d/mongodb start" }
 end

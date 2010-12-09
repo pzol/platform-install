@@ -30,6 +30,7 @@ dep 'conf.nginx' do
   meet { 
 		render_erb "nginx/nginx.conf", :to => conf_path, :sudo => true 
 		shell "touch #{nginx_prefix}/conf/access-list", :sudo => true
+		shell "/etc/init.d/nginx start", :sudo => true
 	}
 end
 
