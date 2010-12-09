@@ -1,8 +1,5 @@
 #!/bin/bash -l
 
-babushka_install_path="$install_dir"
-mkdir -p $babushka_install_path
-
 function is_babushka_installed {
 [[ -s /usr/local/bin/babushka ]]
 }
@@ -12,8 +9,8 @@ function install_babushka {
 		echo "Babushka is already installed"
 		true
 	else
-		curl -# -L http://babushka.me/up/hard > $babushka_install_path/babushka.sh
-		bash -l < $babushka_install_path/babushka.sh
+		curl -# -L http://babushka.me/up/hard > $install_dir/babushka.sh
+		bash -l < $install_dir/babushka.sh
 		is_babushka_installed
 	fi
 }

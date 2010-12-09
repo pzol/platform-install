@@ -31,8 +31,6 @@ dep 'conf.nginx' do
 		render_erb "nginx/nginx.conf", :to => conf_path, :sudo => true 
 		shell "touch #{nginx_prefix}/conf/access-list", :sudo => true
 	}
-
-	after { shell "/etc/init.d/nginx start", :sudo => true }
 end
 
 dep 'init_d.nginx' do
@@ -45,6 +43,7 @@ end
 
 dep 'nginx' do
 	requires 'webserver.nginx', 'nginx.dirs', 'conf.nginx', 'init_d.nginx'
+	after { shell "/etc/init.d/nginx start", :sudo => true }
 end
 	
 dep 'libcurl4-openssl-dev.managed' do
