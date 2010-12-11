@@ -2,6 +2,7 @@ meta 'nginx' do
 	template {
 		helper(:passenger_default_user) { "deploy" }
 		helper(:passenger_root) { Babushka::GemHelper.gem_path_for('passenger') }
+		helper(:passenger_ruby) { "/usr/local/rvm/wrappers/ruby-1.9.2-p0/ruby" }
 		helper(:log_path) { var(:log_path) }
 		helper(:nginx_prefix) { var(:nginx_prefix) }
 		helper(:conf_path) { var(:nginx_prefix) / "conf/nginx.conf" }
