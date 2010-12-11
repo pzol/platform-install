@@ -6,10 +6,12 @@ meta 'nginx' do
 		helper(:log_path) { var(:log_path) }
 		helper(:nginx_prefix) { var(:nginx_prefix) }
 		helper(:conf_path) { var(:nginx_prefix) / "conf/nginx.conf" }
+		helper(:www_root) { var(:www_root) }
 		
 		setup {
 			define_var :nginx_prefix, :message => "Nginx default prefix", :default => '/opt/nginx'
 			define_var :log_path, :message => "Error log path", :default => "/var/log/nginx"
+			define_var :www_root, :message => "www root path", :default => "/var/www/root"
 		}
 	}
 end
@@ -59,7 +61,7 @@ end
 
 dep 'nginx.dirs' do
 	requires 'deploy.group'
-	dirs '/var/log/nginx', '/opt/nginx/conf', '/var/www/root'
+	dirs '/var/log/nginx', '/opt/nginx/conf', '/opt/nginx/conf/sites-enabled', '/var/www/root'
 	user 'root'
 	group 'deploy'
 	mask '2774'			# drwrwxs--
