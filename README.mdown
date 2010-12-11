@@ -5,7 +5,6 @@ Ubuntu 10.10 Maverick Meerkat (tested) - 10.04 will probably work as well, but I
 
 ## Install
 On a stock Ubuntu 10.10, go to a terminal and run:
- 
 
     sudo bash -l -c "`wget --no-check-certificate -O - https://github.com/pzol/platform-install/raw/master/bootstrap.sh`"
 
@@ -16,5 +15,20 @@ The installer does a system-wide installation of RVM and installs Ruby 1.9.2-p0
 I use /opt to install the apps, you can customize them in the babushka-deps if you want.
 
 ## Adding ruby web-apps
-TODO
+For a web application to be loaded by passenger automatically, the following criteria must be met
+* The app can be located anywhere, although, we prefer /opt 
+* A symbolic link must be created to the apps `public` dir in `/var/www/root` , e.g. `ln -s /opt/web_app/public/ /var/www/root/web_app`
+* Every web app needs to have a file `nginx.conf` in its directory containing the prefix, e.g. `passenger_base_uri web_app;`
 
+## How things work
+Roughly the process looks like this:
+1. Download bootstrap.sh which clones the whole repo
+2. Install pre-requisites rvm and ruby
+3. Install babushka and run it with defaults enabled, no questions asked
+4. Babushka will do the rest
+
+## Extending install
+Keep in mind that all tasks should be added as babushka deps.
+The bash scripts are only to get started. 
+
+All babushka deps should ideally check if the current dep is not only installed, but also if it is installed correctly and in the met section corrective actions shall be taken.

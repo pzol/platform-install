@@ -1,5 +1,4 @@
 #!/bin/bash -l
-## DO NOT change the shebang!
 
 function is_root {
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then

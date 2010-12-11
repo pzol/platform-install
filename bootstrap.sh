@@ -1,8 +1,7 @@
-cd /opt
-
+#! /bin/bash -l
 export install_dir=$(cd `mktemp -d platform-install-temp.XXXX`; pwd)
 
-function is_root {
+function is_root { # yes, I need to repeat this... coz this needs to run 
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
 	echo "The installation process requires to be run as root. Consider using sudo."
 	false
@@ -23,6 +22,8 @@ function done_message {
 echo "Temporary installation files are in $install_dir, please remove manually"
 echo "Platform installation scripts are in platform-install. For updates and repair run update.sh"
 }
+
+cd /opt
 
 is_root && 
 pull_source && source ./install.sh && 

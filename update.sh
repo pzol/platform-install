@@ -1,3 +1,4 @@
+#! /bin/bash -l
 cd /opt/platform-install
 
 source install.sh 
