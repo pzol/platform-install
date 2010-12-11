@@ -16,16 +16,16 @@ I use /opt to install the apps, you can customize them in the babushka-deps if y
 
 ## Adding ruby web-apps
 For a web application to be loaded by passenger automatically, the following criteria must be met
-* The app can be located anywhere, although, we prefer /opt 
-* A symbolic link must be created to the apps `public` dir in `/var/www/root` , e.g. `ln -s /opt/web_app/public/ /var/www/root/web_app`
-* Every web app needs to have a file `nginx.conf` in its directory containing the prefix, e.g. `passenger_base_uri web_app;`
+ * The app can be located anywhere, although, we prefer /opt 
+ * A symbolic link must be created to the apps `public` dir in `/var/www/root` , e.g. `ln -s /opt/web_app/public/ /var/www/root/web_app`
+ * Every web app needs to have a file `nginx.conf` in its directory containing the prefix, e.g. `passenger_base_uri web_app;`
 
 ## How things work
 Roughly the process looks like this:
-1. Download bootstrap.sh which clones the whole repo
-2. Install pre-requisites rvm and ruby
-3. Install babushka and run it with defaults enabled, no questions asked
-4. Babushka will do the rest
+ 1. Download bootstrap.sh which clones the whole repo
+ 2. Install pre-requisites rvm and ruby
+ 3. Install babushka and run it with defaults enabled, no questions asked
+ 4. Babushka will do the rest
 
 ## Extending install
 Keep in mind that all tasks should be added as babushka deps.
