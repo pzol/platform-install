@@ -44,9 +44,13 @@ dep 'init_d.nginx' do
 	}
 end
 
+dep 'started.nginx' do
+	met? { shell("ps aux | grep nginx")["master process"] }
+	meet { shell "/etc/init.d/nginx start", :sudo => true }
+end
+
 dep 'nginx' do
-	requires 'webserver.nginx', 'nginx.dirs', 'conf.nginx', 'init_d.nginx'
-	after { shell "/etc/init.d/nginx start", :sudo => true }
+	requires 'webserver.nginx', 'nginx.dirs', 'conf.nginx', 'init_d.nginx', 'started.nginx'
 end
 	
 dep 'libcurl4-openssl-dev.managed' do
