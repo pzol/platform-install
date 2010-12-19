@@ -1,3 +1,7 @@
+dep 'gitosis.server' do
+	requires 'gitosis'
+end
+
 # installation according to this help http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way
 dep 'gitosis' do
 	requires 'python-setuptools.managed', 'git-core.managed', 'git.user'

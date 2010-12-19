@@ -24,7 +24,9 @@ function babushka_list_servers {
 }
 
 function babushka_done {
-	cd /opt/platform-install
+	if [ -e '/opt/platform-install' ]; then 
+		cd /opt/platform-install
+	fi
 	echo "Now run babushka with a server role:"
 	babushka_list_servers
 }
