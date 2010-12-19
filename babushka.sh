@@ -19,9 +19,19 @@ function babushka_platform {
 	babushka -y 'platform'
 }
 
+function babushka_list_servers {
+	babushka -T | grep ".server'$" | sed 's/current dir://'
+}
+
+function babushka_done {
+	cd /opt/platform-install
+	echo "Now run babushka with a server role:"
+	babushka_list_servers
+}
+
 function babushka_run {
 	install_babushka && 
 	babushka_platform &&
-	echo "Now run babushka with a server role, see babushka -T for possible options"
+	babushka_done
 }
 
