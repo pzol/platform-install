@@ -5,7 +5,7 @@ function run_update {
 	echo "Getting newest files from repo"
 	git pull
 	echo "Running update"
-	run
+	babushka 'platform'
 }
 
 is_root && run_update
