@@ -19,8 +19,8 @@ function pull_source {
 }
 
 function done_message {
-echo "Temporary installation files are in $install_dir, please remove manually"
-echo "Platform installation scripts are in platform-install. For updates and repair run update.sh"
+	echo "Temporary installation files are in $install_dir, please remove manually"
+	echo "Platform installation scripts are in platform-install. For updates and repair run update.sh"
 }
 
 cd /opt

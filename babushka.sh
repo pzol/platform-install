@@ -21,6 +21,7 @@ function babushka_platform {
 
 function babushka_run {
 	install_babushka && 
-	babushka_platform
+	babushka_platform &&
+	echo "Now run babushka with a server role, see babushka -T for possible options"
 }
 
