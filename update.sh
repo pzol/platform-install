@@ -1,7 +1,5 @@
 #! /bin/bash -l
-cd /opt/platform-install
-
-source install.sh 
+source is_root.sh 
 
 function run_update {
 	echo "Getting newest files from repo"
