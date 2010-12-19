@@ -19,6 +19,17 @@ dep 'gitosis' do
 		sudo "echo '#{var(:pub_key)}' > /tmp/id_rsa.pub && sudo -H -u git gitosis-init < /tmp/id_rsa.pub" 
 		sudo "chmod 755 #{post_update}" unless post_update_executable?
 	end
+
+	after {
+		ip = shell("ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'")
+		puts "Now do:
+		git clone git@#{ip}:gitosis-admin.git
+		cd gitosis-admin
+		
+		edit gitosis.conf to add repos
+		add keys to keydir
+		"
+	}
 end
 
 dep 'git.user' do
