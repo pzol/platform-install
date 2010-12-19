@@ -1,5 +1,5 @@
 dep 'gitosis.server' do
-	requires 'gitosis'
+	requires 'gitosis', 'openssh-server.managed'
 end
 
 # installation according to this help http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way
@@ -31,4 +31,8 @@ end
 
 dep 'git-core.managed' do
 	provides 'git'
+end
+
+dep 'openssh-server.managed' do
+	provides 'sshd'
 end
