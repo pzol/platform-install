@@ -6,6 +6,7 @@ function run_update {
 	git pull
 	echo "Running update"
 	babushka 'platform'
+	./roles.sh
 }
 
 is_root && run_update
