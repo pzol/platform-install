@@ -3,7 +3,7 @@ dep 'xenia', :for => :linux  do
 	met? { File.directory? "/opt/xenia" }
 	meet {
 		git "ssh://xenia@194.213.22.181/var/git/xenia" do |path|
-			shell "cap deploy:setup -s domain=127.0.0.1 && cap deploy -s domain=127.0.0.1"
+			shell "cap deploy:setup -s domain=`$USER`@127.0.0.1 && cap deploy -s domain=`$USER`@127.0.0.1"
 		end
 	}
 end
