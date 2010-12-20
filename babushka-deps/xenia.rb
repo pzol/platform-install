@@ -1,11 +1,15 @@
 dep 'xenia', :for => :linux  do
-	requires 'platform', 'xenia_etc_environment', 'xenia.dirs', 'xenia.webservice', 'xenia_crontab' 
+	requires 'platform', 'xenia_etc_environment', 'xenia.dirs', 'xenia_app', 'xenia.webservice'
 	met? { File.directory? "/opt/xenia" }
 	meet {
 		git "ssh://194.213.22.181/var/git/xenia" do |path|
 			shell "cap setup -s server=127.0.0.1 && cap deploy -s server=127.0.0.1"
 		end
 	}
+end
+
+dep 'xenia_app' do
+	requires 'platform', 'xenia_etc_environment', 'xenia.dirs'
 end
 
 dep 'xenia_etc_environment' do
@@ -23,10 +27,4 @@ end
 
 dep 'xenia.webservice' do
 	requires 'deploy.user'
-end
-
-dep 'xenia_crontab' do
-	requires 'deploy.user'
-	met? { !(failable_shell("crontab -u deploy -l").stderr["no crontab"]) } #TODO: Compare if it is up to date
-	meet { shell "pwd"; sudo "crontab -u deploy install/crontab_fti" }
 end
