@@ -2,7 +2,7 @@ dep 'xenia', :for => :linux  do
 	requires 'platform', 'xenia_etc_environment', 'xenia.dirs', 'xenia_app', 'xenia.webservice'
 	met? { File.directory? "/opt/xenia" }
 	meet {
-		git "ssh://194.213.22.181/var/git/xenia" do |path|
+		git "ssh://xenia@194.213.22.181/var/git/xenia" do |path|
 			shell "cap setup -s server=127.0.0.1 && cap deploy -s server=127.0.0.1"
 		end
 	}
