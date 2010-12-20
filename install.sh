@@ -18,6 +18,7 @@ source babushka.sh
 function install_done {
 	echo "\nAll done."
 	echo "To update use update.sh and the rerun babushka with the server role"
+}
 
 function platform_install {
 	welcome && is_root &&
