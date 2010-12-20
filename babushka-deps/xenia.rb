@@ -1,5 +1,11 @@
 dep 'xenia', :for => :linux  do
 	requires 'platform', 'xenia_etc_environment', 'xenia.dirs', 'xenia.webservice', 'xenia_crontab' 
+	met? { File.directory? "/opt/xenia" }
+	meet {
+		git "ssh://194.213.22.181/var/git/xenia" do |path|
+			shell "cap setup -s server=127.0.0.1 && cap deploy -s server=127.0.0.1"
+		end
+	}
 end
 
 dep 'xenia_etc_environment' do
