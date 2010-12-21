@@ -1,4 +1,4 @@
-dep 'xenia', :for => :linux  do
+dep 'xenia' do
 	requires 'platform', 'xenia_etc_environment', 'xenia.dirs', 'xenia_app', 'xenia.webservice'
 	
 	met? { File.directory? "/opt/xenia" }
