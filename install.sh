@@ -18,6 +18,7 @@ source babushka.sh
 function install_done {
 	echo -e "\nAll done."
 	echo "To update use update.sh and the rerun babushka with the server role"
+	cd /opt/plaform-install
 }
 
 function platform_install {

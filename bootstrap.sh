@@ -17,8 +17,7 @@ function pull_source {
 	if [ ! -e "/opt/platform-install" ]; then
 		git clone git://github.com/pzol/platform-install.git
 	else
-		cd platform-install
-		git pull
+		echo $(cd platform-install && git pull)
 	fi	
 }
 
