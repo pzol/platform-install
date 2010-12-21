@@ -2,9 +2,13 @@ dep 'gitosis.server' do
 	requires 'gitosis', 'openssh-server.managed'
 end
 
+meta 'gitosis' do
+	template{}
+end
+
 # installation according to this help http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way
 dep 'gitosis' do
-	requires 'python-setuptools.managed', 'git-core.managed', 'git.user'
+	requires 'python-setuptools.managed', 'git-core.managed', 'git.user', 'init_d.gitosis'
 	helper(:post_update) { "/home/git/repositories/gitosis-admin.git/hooks/post-update" }
 	helper(:post_update_executable?) { File.lstat(post_update).mode.to_s(8) =~ /755/ } 
 	
@@ -15,6 +19,7 @@ dep 'gitosis' do
     git "git://eagain.net/gitosis.git" do |path|
       log_shell "Setting up gitosis", "python setup.py install"
     end
+
 
 		sudo "echo '#{var(:pub_key)}' > /tmp/id_rsa.pub && sudo -H -u git gitosis-init < /tmp/id_rsa.pub" 
 		sudo "chmod 755 #{post_update}" unless post_update_executable?
@@ -29,6 +34,14 @@ dep 'gitosis' do
 		edit gitosis.conf to add repos
 		add keys to keydir
 		"
+	}
+end
+
+dep 'init_d.gitosis' do
+	met? { File.exists? "/etc/init.d/git-daemon" }
+	meet {
+		render_erb "git/git-daemon.erb", :to => '/etc/init.d/git-daemon', :perms => '755', :sudo => true
+		sudo 'update-rc.d git-daemon defaults'
 	}
 end
 
