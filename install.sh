@@ -16,7 +16,7 @@ source ruby192.sh
 source babushka.sh
 
 function install_done {
-	echo "\nAll done."
+	echo -e "\nAll done."
 	echo "To update use update.sh and the rerun babushka with the server role"
 }
 
