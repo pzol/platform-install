@@ -26,10 +26,11 @@ function done_message {
 	echo "Platform installation scripts are in platform-install. For updates and repair run update.sh"
 }
 
+source ./install.sh
 cd /opt
 
 is_root && 
-pull_source && source ./install.sh && 
+pull_source && 
 run && 
 done_message
 
