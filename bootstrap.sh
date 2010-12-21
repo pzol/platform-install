@@ -1,6 +1,8 @@
 #! /bin/bash -l
 export install_dir=$(cd `mktemp -d platform-install-temp.XXXX`; pwd)
 
+source ./install.sh
+
 function is_root { # yes, I need to repeat this... coz this needs to run 
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
 	echo "The installation process requires to be run as root. Consider using sudo."
@@ -26,7 +28,6 @@ function done_message {
 	echo "Platform installation scripts are in platform-install. For updates and repair run update.sh"
 }
 
-source ./install.sh
 cd /opt
 
 is_root && 
