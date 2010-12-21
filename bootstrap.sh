@@ -14,8 +14,12 @@ function fix_permissions {
 
 function pull_source {
 	apt-get -qq install git-core
-	git clone git://github.com/pzol/platform-install.git
-	cd platform-install
+	if [ ! -e "/opt/platform-install" ]; then
+		git clone git://github.com/pzol/platform-install.git
+	else
+		cd platform-install
+		git pull
+	fi	
 }
 
 function done_message {
