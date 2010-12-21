@@ -1,5 +1,5 @@
 dep 'gitosis.server' do
-	requires 'gitosis', 'openssh-server.managed'
+	requires 'gitosis', 'git_daemon', 'openssh-server.managed'
 end
 
 meta 'gitosis' do
@@ -8,7 +8,7 @@ end
 
 # installation according to this help http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way
 dep 'gitosis' do
-	requires 'python-setuptools.managed', 'git-core.managed', 'git.user', 'git_daemon'
+	requires 'python-setuptools.managed', 'git-core.managed', 'git.user'
 	helper(:post_update) { "/home/git/repositories/gitosis-admin.git/hooks/post-update" }
 	helper(:post_update_executable?) { File.lstat(post_update).mode.to_s(8) =~ /755/ } 
 	
@@ -37,7 +37,7 @@ dep 'gitosis' do
 end
 
 dep 'git_daemon' do
-	requires 'git-core.managed', 'started_git_daemon'
+	requires 'git-core.managed', 'started.git_daemon'
 	met? { provided? 'git' }
 end
 

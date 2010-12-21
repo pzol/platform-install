@@ -1,20 +1,35 @@
 #!/bin/sh
 test -f /usr/bin/git || exit 0
 . /lib/lsb/init-functions
-GITDAEMON_OPTIONS="daemon --reuseaddr --verbose --base-path=/home/git/repositories/ --detach"
+NAME=git-daemon
+PIDFILE=/var/run/$NAME.pid
+DAEMON=/usr/bin/git
+
+GITDAEMON_OPTS="daemon --reuseaddr --verbose --pid-file=$PIDFILE --user=git --group=nogroup --base-path=/home/git/repositories --syslog --detach"
+
+echo $GITDAEMON_OPTS
+
+
+start_git() {
+         start-stop-daemon --start -v --pidfile $PIDFILE \
+            --exec $DAEMON  -- $GITDAEMON_OPTS
+}
+
 case "$1" in
-    start)  log_daemon_msg "Starting git-daemon"
-    start-stop-daemon --start -c git:git --quiet --background \
-    --exec /usr/bin/git -- ${GITDAEMON_OPTIONS}
-    log_end_msg $?
-    ;;
-    stop)   log_daemon_msg "Stopping git-daemon"
-    start-stop-daemon --stop --quiet --name git-daemon
-    log_end_msg $?
+        start)
+                log_begin_msg "Starting git-daemon"
+                start_git
+                log_end_msg 0
+        ;;
+    stop)
+                log_begin_msg "Stopping git-daemon"
+                start-stop-daemon --stop --pidfile=$PIDFILE
+                log_end_msg 0
     ;;
     *)      log_action_msg "Usage: /etc/init.d/git-daemon {start|stop}"
     exit 2
     ;;
 esac
 exit 0
+
 
