@@ -13,9 +13,14 @@ Edit `gitosis.conf`:
 		members = pzol@Serenity
 		daemon = yes
 
+Commit the changes:
+
+		git commit gitosis.conf -m "[ADDED] test_proj"
+		git push
+
 Now go to your machine and clone the new repo:
 
-		git clone git@git.anixe.pl/test_proj.git
+		git clone git@git.anixe.pl:test_proj.git
 		cd test_proj
 		touch test.txt
 		git add test.txt
