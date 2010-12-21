@@ -1,0 +1,38 @@
+After the setup you need to clone the `gitosis-admin` repo to your machine, use the key you have provided during install:
+
+    git clone git@git.anixe.pl:gitosis-admin.git
+
+Edit `gitosis.conf`:
+ 1. add a group of users
+ 2. `writable` contains the name of the project
+ 3. `members` are the key names (id_rsa.pub place in keydir) of the users which shall have access
+ 4. `daemon` to enable daemon access
+
+		[group test]
+		writable = test_proj
+		members = pzol@Serenity
+		daemon = yes
+
+Now go to your machine and clone the new repo:
+
+		git clone git@git.anixe.pl/test_proj.git
+		cd test_proj
+		touch test.txt
+		git add test.txt
+		git commit test.txt -m "test"
+		git push origin master
+
+The new repo has been created on the server! 
+
+## Read-only access
+On the repo server do 
+
+		touch /home/git/repositories/test_proj.git/git-daemon-export-ok
+
+in order to enable access via the git daemon (port 9418).
+You can clone the repo using:
+
+		git clone git://git.anixe.pl/test_proj.git
+
+That's it! For more info see (https://help.ubuntu.com/community/Git)
+
