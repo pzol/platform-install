@@ -8,7 +8,7 @@ end
 
 # installation according to this help http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way
 dep 'gitosis' do
-	requires 'python-setuptools.managed', 'git-core.managed', 'git.user', 'init_d.gitosis'
+	requires 'python-setuptools.managed', 'git-core.managed', 'git.user', 'git_daemon'
 	helper(:post_update) { "/home/git/repositories/gitosis-admin.git/hooks/post-update" }
 	helper(:post_update_executable?) { File.lstat(post_update).mode.to_s(8) =~ /755/ } 
 	
@@ -19,7 +19,6 @@ dep 'gitosis' do
     git "git://eagain.net/gitosis.git" do |path|
       log_shell "Setting up gitosis", "python setup.py install"
     end
-
 
 		sudo "echo '#{var(:pub_key)}' > /tmp/id_rsa.pub && sudo -H -u git gitosis-init < /tmp/id_rsa.pub" 
 		sudo "chmod 755 #{post_update}" unless post_update_executable?
@@ -37,12 +36,23 @@ dep 'gitosis' do
 	}
 end
 
-dep 'init_d.gitosis' do
+dep 'git_daemon' do
+	requires 'git-core.managed', 'started_git_daemon'
+	met? { provided? 'git' }
+end
+
+dep 'init_d.git_daemon' do
 	met? { File.exists? "/etc/init.d/git-daemon" }
 	meet {
 		render_erb "git/git-daemon.erb", :to => '/etc/init.d/git-daemon', :perms => '755', :sudo => true
 		sudo 'update-rc.d git-daemon defaults'
 	}
+end
+
+dep 'started.git_daemon' do
+	requires 'init_d.git_daemon'
+	met? { shell("ps aux | grep git-daemon")[" git-daemon "] }
+	meet { shell "/etc/init.d/git-daemon start", :sudo => true }
 end
 
 dep 'git.user' do
