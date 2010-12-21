@@ -38,7 +38,6 @@ end
 
 dep 'git_daemon' do
 	requires 'git-core.managed', 'started.git_daemon'
-	met? { provided? 'git' }
 end
 
 dep 'init_d.git_daemon' do
