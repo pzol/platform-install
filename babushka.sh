@@ -24,6 +24,7 @@ function babushka_list_servers {
 }
 
 function babushka_done {
+	source /usr/local/rvm/scripts/rvm
 	if [ -e '/opt/platform-install' ]; then 
 		cd /opt/platform-install
 	fi
