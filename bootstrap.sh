@@ -1,7 +1,6 @@
 #! /bin/bash -l
 export install_dir=$(cd `mktemp -d platform-install-temp.XXXX`; pwd)
 
-source ./install.sh
 
 function is_root { # yes, I need to repeat this... coz this needs to run 
 if [[ $(/usr/bin/id -u) -ne 0 ]]; then
@@ -18,8 +17,9 @@ function pull_source {
 	apt-get -qq install git-core
 	if [ ! -e "/opt/platform-install" ]; then
 		git clone git://github.com/pzol/platform-install.git
+		cd platform-install
 	else
-		echo $(cd platform-install && git pull)
+		cd /opt/platform-install && git pull
 	fi	
 }
 
@@ -31,7 +31,7 @@ function done_message {
 cd /opt
 
 is_root && 
-pull_source && 
+pull_source && source ./install.sh &&
 run && 
 done_message
 
