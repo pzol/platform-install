@@ -8,14 +8,14 @@ end
 
 dep '1.9.2.rvm' do
   requires '1.9.2 installed.rvm'
-  met? { shell('ruby --version')['ruby 1.9.2p0'] }
+  met? { shell('ruby --version')['ruby 1.9.2p'] }
   meet { rvm('use 1.9.2 --default') }
 end
 
 dep '1.9.2 installed.rvm' do
   requires 'rvm'
 
-  met? { rvm('list')['ruby-1.9.2-p0'] }
+  met? { rvm('list')['ruby-1.9.2-p'] }
 	meet :on => :osx   do log("rvm install 1.9.2") { shell '~/.rvm/bin/rvm install 1.9.2' } end
 	meet :on => :linux do log("rvm install 1.9.2") { shell 'rvm install 1.9.2', :sudo => true } end
 end
