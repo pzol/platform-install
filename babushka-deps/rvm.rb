@@ -1,6 +1,6 @@
 meta :rvm do
   template {
-    helper :rvm do |args|
+    def rvm(*args) 
       shell "rvm #{args}", :log => args['install']
     end
   }
