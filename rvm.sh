@@ -30,7 +30,7 @@ function install_rvm {
 	else
 		echo "Installing rvm"
 		mkdir -p $rvm_install_path
-		apt-get update
+		apt-get -q update
 		echo "Downloading and installing system pre-requisites"
 		apt-get install -qq -y libruby1.8 zlib1g-dev libssl-dev libreadline5-dev build-essential libxslt-dev libxml2-dev curl git-core
 		curl -# -L http://bit.ly/rvm-install-system-wide > $rvm_install_path/rvm-install-system-wide
