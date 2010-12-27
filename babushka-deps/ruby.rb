@@ -5,7 +5,7 @@ end
 
 dep 'rake.gem' do
 	requires '1.9.2.rvm'
-  installs 'rake 0.8.7'
+  installs 'rake ~> 0.8.7'
 	provides 'rake'
 end
 

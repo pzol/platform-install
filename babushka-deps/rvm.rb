@@ -3,21 +3,24 @@ meta :rvm do
     def rvm(args) 
       shell "rvm #{args}", :log => args['install']
     end
+
+		def ruby_version; '1.9.2-p136'; end 							# rvm  uses ruby-1.9.2-p136
+		def ruby_ruby_version; '1.9.2p136'; end						# ruby uses ruby 1.9.2 p136
   }
 end
 
 dep '1.9.2.rvm' do
   requires '1.9.2 installed.rvm'
-  met? { shell('ruby --version')['ruby 1.9.2p136'] }
-  meet { rvm('use 1.9.2 --default') }
+  met? { shell('ruby --version')["ruby #{ruby_ruby_version}"] }
+  meet { rvm("use #{ruby_version} --default") }
 end
 
 dep '1.9.2 installed.rvm' do
   requires 'rvm'
 
-  met? { rvm('list')['ruby-1.9.2-p136'] }
-	meet :on => :osx   do log("rvm install 1.9.2") { shell '~/.rvm/bin/rvm install 1.9.2' } end
-	meet :on => :linux do log("rvm install 1.9.2") { shell 'rvm install 1.9.2', :sudo => true } end
+  met? { rvm('list')["ruby-#{ruby_version}"] }
+	meet :on => :osx   do log("rvm install #{ruby_version}") { shell "~/.rvm/bin/rvm #{ruby_version}" } end
+	meet :on => :linux do log("rvm install #{ruby_version}") { shell "rvm install #{ruby_version}", :sudo => true } end
 end
 
 dep 'rvm' do

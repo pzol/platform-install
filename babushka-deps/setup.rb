@@ -23,7 +23,7 @@ meta :setup do
   }
 
   template {
-    internal_setup { setup_source_uris }
+    prepare { setup_source_uris }
     met? { provided? }
     meet { process_sources { call_task :process_source } }
   }
