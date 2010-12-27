@@ -1,12 +1,13 @@
 #!/bin/bash -l
 
 function is_ruby192_installed {
-[[ `rvm list` =~ "ruby-1.9.2-p0" ]]
+[[ `rvm list` =~ "ruby-1.9.2-p" ]]
 }
 
 function install_ruby192 {
 if is_ruby192_installed; then
 	echo "Ruby 1.9.2 is already installed"
+	true
 else
 	rvm install 1.9.2
 	rvm use 1.9.2 --default
