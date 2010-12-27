@@ -59,7 +59,7 @@ end
 
 dep 'passenger.gem' do
 	requires '1.9.2.rvm' 
-	installs 'passenger' => '3.0.0'
+	installs 'passenger 3.0.0'
 	provides 'passenger-install-nginx-module'
 end
 

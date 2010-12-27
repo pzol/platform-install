@@ -5,13 +5,13 @@ end
 
 dep 'rake.gem' do
 	requires '1.9.2.rvm'
-  installs 'rake' => '0.8.7'
+  installs 'rake 0.8.7'
 	provides 'rake'
 end
 
 dep 'bundler.gem' do
 	requires '1.9.2.rvm'
-  installs 'bundler' => '1.0.7'
+  installs 'bundler 1.0.7'
   provides 'bundle'
 end
 
