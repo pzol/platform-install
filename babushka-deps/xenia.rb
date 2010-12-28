@@ -20,7 +20,7 @@ dep 'xenia_etc_environment' do
 end
 
 dep 'xenia.dirs' do
-	requires 'deploy.user', 'deploy.group'
+	requires 'deploy.user', 'deploy.userkey', 'deploy.group'
 	dirs '/var/data/xenia', '/var/log/xenia', '/var/data/export'
 	user 'deploy'
 	group 'deploy'
