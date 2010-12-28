@@ -50,8 +50,17 @@ dep 'started.nginx' do
 end
 
 dep 'nginx' do
-	requires 'webserver.nginx', 'nginx.dirs', 'conf.nginx', 'init_d.nginx', 'started.nginx'
+	requires 'webserver.nginx', 'nginx.dirs', 'conf.nginx', 'init_d.nginx', 'started.nginx', 'deploy user can restart.nginx'
 end
+
+dep 'deploy user can restart.nginx' do
+	def is_sudoer?; shell "grep '/etc/init.d/nginx' /etc/init.d/nginx"; end
+
+	met? { is_sudoer? }
+	meet {
+		sudo "cp /etc/sudoers /tmp/sudoers.new && echo "deploy ALL=NOPASSWD: /etc/init.d/nginx" >> /tmp/sudoers.new && visudo -c -f /tmp/sudoers.new && cp /tmp/sudoers.new /etc/sudoers && rm /tmp/sudoers.new"
+	}
+end	
 	
 dep 'libcurl4-openssl-dev.managed' do
 	provides []
