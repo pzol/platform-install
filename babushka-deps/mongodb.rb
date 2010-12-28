@@ -29,6 +29,11 @@ dep 'mongodb.setup' do
 		render_erb 'mongodb/mongodb.init.d.erb', :to => '/etc/init.d/mongodb', :perms => '755', :sudo => true 
 		sudo 'update-rc.d mongodb defaults'
 	end
+	def daemon_opts; var(:mongo_daemon_opts); end
+
+	setup {
+		define_var :mongo_daemon_opts, :message => "Provide additional options for the daemon like --master", :default => "--master"
+	}
 
 	met? {
 		provided? and
