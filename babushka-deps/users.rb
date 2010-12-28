@@ -12,7 +12,7 @@ meta 'userkey' do
 		def authorized_keys_path; File.join(ssh_path, "authorized_keys"); end
 		def contains_key?; grep(/#{pub_key}/, authorized_keys_path); end
 		def create_ssh_path; shell "mkdir -p #{ssh_path}"; end
-		def append_pub_key; shell "echo '#{pub_key} >> #{authorized_keys_path}'"; end
+		def append_pub_key; shell "echo '#{pub_key}' >> #{authorized_keys_path}"; end
 
 		met? { contains_key? }
 		meet {
