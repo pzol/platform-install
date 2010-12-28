@@ -1,13 +1,13 @@
 meta 'nginx' do
 	template {
-		helper(:passenger_default_user) { "deploy" }
-		helper(:passenger_root) { Babushka::GemHelper.gem_path_for('passenger') }
-		helper(:passenger_ruby) { "/usr/local/rvm/wrappers/ruby-1.9.2-p0/ruby" }
-		helper(:log_path) { var(:log_path) }
-		helper(:nginx_prefix) { var(:nginx_prefix) }
-		helper(:conf_path) { var(:nginx_prefix) / "conf/nginx.conf" }
-		helper(:www_root) { var(:www_root) }
-		
+		def passenger_default_user;	"deploy"; end
+		def passenger_root; 				Babushka::GemHelper.gem_path_for('passenger'); end
+		def passenger_ruby;  				"/usr/local/rvm/wrappers/ruby-1.9.2-p0/ruby"; end
+		def log_path; 							var(:log_path); end
+		def nginx_prefix; 					var(:nginx_prefix); end
+		def conf_path; 							var(:nginx_prefix) / "conf/nginx.conf"; end
+		def www_root; 							var(:www_root); end
+
 		setup {
 			define_var :nginx_prefix, :message => "Nginx default prefix", :default => '/opt/nginx'
 			define_var :log_path, :message => "Error log path", :default => "/var/log/nginx"
