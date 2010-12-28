@@ -1,7 +1,7 @@
 dep 'xenia' do
 	requires 'platform', 'xenia_etc_environment', 'xenia.dirs', 'xenia_app', 'xenia.webservice'
 	
-	met? { File.directory? "/opt/xenia" }
+	met? { File.directory? "/opt/xenia/current" }
 	meet {
 		git "git://git.anixe.pl/xenia.git" do |path|
 			log_shell "Capistrano setup", "cap deploy:setup  HOSTS=127.0.0.1"
