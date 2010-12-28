@@ -28,5 +28,10 @@ dep 'xenia.dirs' do
 end
 
 dep 'xenia.webservice' do
-	requires 'deploy.user'
+	requires 'deploy.user', 'xenia symlink exists'
+end
+
+dep 'xenia symlink exists' do
+	met? { File.exist?("/var/www/root/xenia") }
+  meet { sudo "ln -f -s /opt/xenia/current/public/ /var/www/root/xenia" }
 end
