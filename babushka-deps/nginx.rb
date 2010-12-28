@@ -2,7 +2,7 @@ meta 'nginx' do
 	template {
 		def passenger_default_user;	"deploy"; end
 		def passenger_root; 				Babushka::GemHelper.gem_path_for('passenger'); end
-		def passenger_ruby;  				"/usr/local/rvm/wrappers/ruby-1.9.2-p0/ruby"; end
+		def passenger_ruby;  				"/usr/local/rvm/wrappers/ruby-1.9.2-p136/ruby"; end
 		def log_path; 							var(:log_path); end
 		def nginx_prefix; 					var(:nginx_prefix); end
 		def conf_path; 							var(:nginx_prefix) / "conf/nginx.conf"; end
@@ -54,7 +54,7 @@ dep 'nginx' do
 end
 
 dep 'deploy user can restart.nginx' do
-	def is_sudoer?; shell("grep '/etc/init.d/nginx' /etc/sudoers")["nginx"]; end
+	def is_sudoer?; shell("grep '/etc/init.d/nginx' /etc/sudoers"); end
 
 	met? { is_sudoer? }
 	meet {
