@@ -5,7 +5,12 @@ dep 'xenia' do
 	meet {
 		dir = ""
 		in_build_dir {|path|
-			log_shell "Cloning repo", " git clone --depth 1 git://git.anixe.pl/xenia.git && rvm rvmrc trust #{File.join(path, "xenia")}"
+			if File.exist? "xenia"
+				log_shell "Cloning repo", "git clone --depth 1 git://git.anixe.pl/xenia.git && rvm rvmrc trust #{File.join(path, "xenia")} && cd xenia"
+			else
+				log_shell "Updating repo", "cd xenia && git pull"
+			end
+		 
 			log_shell "Deploying", "cd xenia && cap deploy HOSTS=127.0.0.1"
 		}
 	}
