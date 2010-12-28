@@ -4,7 +4,7 @@ dep 'xenia' do
 	met? { File.directory? "/opt/xenia/current" }
 	meet {
 		in_build_dir {
-			git clone --depth 1 "git://git.anixe.pl/xenia.git" 
+			shell "git clone --depth 1 git://git.anixe.pl/xenia.git" 
 			dir = shell("pwd")
 		}
 		shell "rvm rvmrc trust #{dir}"
