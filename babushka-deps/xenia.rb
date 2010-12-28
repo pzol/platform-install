@@ -4,14 +4,10 @@ dep 'xenia' do
 	met? { File.directory? "/opt/xenia/current" }
 	meet {
 		dir = ""
-		in_build_dir {
-			log_shell "Cloning xenia into build dir", "git clone --depth 1 git://git.anixe.pl/xenia.git" 
-			dir = shell("pwd")
+		in_build_dir {|path|
+			log_shell "Cloning repo", " git clone --depth 1 git://git.anixe.pl/xenia.git && rvm rvmrc trust #{File.join(path, "xenia")}"
+			log_shell "Deploying", "cd xenia && cap deploy HOSTS=127.0.0.1"
 		}
-		shell "rvm rvmrc trust #{dir}"
-		git "git://git.anixe.pl/xenia.git" do |path|
-			log_shell "Deploying xenia using capistrano", "cap deploy HOSTS=127.0.0.1"
-		end
 	}
 end
 
