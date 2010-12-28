@@ -5,6 +5,17 @@ dep 'mongodb.dirs' do
 	mask '0775'
 end
 
+dep 'master.mongodb' do
+	daemon_opts '--master'
+end
+
+meta 'mongodb' do
+  accepts_value_for :daemon_opts
+	template {
+		requires 'mongodb.setup'
+	}
+end
+
 dep 'mongodb.setup' do
 	requires 'mongodb.dirs'
 
@@ -12,12 +23,12 @@ dep 'mongodb.setup' do
 	source "http://fastdl.mongodb.org/linux/mongodb-linux-#{`uname -m`.chomp}-1.6.4.tgz" 
   provides 'mongod', 'mongo'
 
-	helper(:copy_files) { log_shell "Copying files", "cp -r * #{prefix}", :sudo => true }
-	helper(:init_d_exists?) { File.exists?("/etc/init.d/mongodb") }
-	helper(:render_init_d) { 
+	def copy_files; log_shell("Copying files", "cp -r * #{prefix}", :sudo => true); end
+	def init_d_exists?; File.exists?("/etc/init.d/mongodb"); end
+	def render_init_d
 		render_erb 'mongodb/mongodb.init.d.erb', :to => '/etc/init.d/mongodb', :perms => '755', :sudo => true 
 		sudo 'update-rc.d mongodb defaults'
-	}
+	end
 
 	met? {
 		provided? and
