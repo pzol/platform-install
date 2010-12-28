@@ -4,8 +4,8 @@ dep 'xenia' do
 	met? { File.directory? "/opt/xenia" }
 	meet {
 		git "git://git.anixe.pl/xenia.git" do |path|
-			log_shell "Capistrano setup", "cap deploy:setup -s domain=`$USER`@127.0.0.1"
-			log_shell "Capistrano deploy", "cap deploy -s domain=`$USER`@127.0.0.1"
+			log_shell "Capistrano setup", "cap deploy:setup  HOSTS=127.0.0.1"
+			log_shell "Capistrano deploy", "cap deploy HOSTS=127.0.0.1"
 		end
 	}
 end
