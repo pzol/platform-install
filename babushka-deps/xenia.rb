@@ -6,9 +6,9 @@ dep 'xenia' do
 		dir = ""
 		in_build_dir {|path|
 			if File.exist? "xenia"
-				log_shell "Cloning repo", "git clone --depth 1 git://git.anixe.pl/xenia.git && rvm rvmrc trust #{File.join(path, "xenia")} && cd xenia"
-			else
 				log_shell "Updating repo", "cd xenia && git pull"
+			else
+				log_shell "Cloning repo", "git clone --depth 1 git://git.anixe.pl/xenia.git && rvm rvmrc trust #{File.join(path, "xenia")} && cd xenia"
 			end
 		 
 			log_shell "Deploying", "cd xenia && cap deploy HOSTS=127.0.0.1"
