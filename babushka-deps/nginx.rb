@@ -54,7 +54,7 @@ dep 'nginx' do
 end
 
 dep 'deploy user can restart.nginx' do
-	def is_sudoer?; shell "grep '/etc/init.d/nginx' /etc/init.d/nginx"; end
+	def is_sudoer?; shell("grep '/etc/init.d/nginx' /etc/init.d/nginx")["nginx"]; end
 
 	met? { is_sudoer? }
 	meet {
