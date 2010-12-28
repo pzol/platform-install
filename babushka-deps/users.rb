@@ -9,7 +9,7 @@ meta 'userkey' do
 	template {
 		def pub_key; var(:pub_key); end
 		def ssh_path; "/home/#{basename}/.ssh"; end
-		def authorized_keys_path; File.join(ssh_path, "authorized_keys"; end
+		def authorized_keys_path; File.join(ssh_path, "authorized_keys"); end
 		def contains_key?; grep(/#{pub_key}/, authorized_keys); end
 		def create_ssh_path; shell "mkdir -p #{ssh_path}"; end
 		def append_pub_key; shell "echo '#{pub_key} >> #{authorized_keys_path}'"; end
