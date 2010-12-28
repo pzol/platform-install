@@ -1,5 +1,5 @@
 #! /bin/sh
-# <%= generated_by_babushka %>
+# generated_by_babushka 
 ### BEGIN INIT INFO
 # Provides:          mongodb
 # Required-Start:    $remote_fs
@@ -22,7 +22,7 @@ DAEMON=/opt/mongodb/bin/$NAME
 LOGFILE=/var/log/mongodb/mongod.log
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-DAEMON_ARGS="--quiet --dbpath $DATA --logpath $LOGFILE --pidfilepath $PIDFILE --fork"
+DAEMON_ARGS="--quiet --dbpath $DATA --logpath $LOGFILE --pidfilepath $PIDFILE --fork <%= daemon_opts %>"
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
