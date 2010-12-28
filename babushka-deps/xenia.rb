@@ -21,7 +21,7 @@ end
 
 dep 'xenia.dirs' do
 	requires 'deploy.user', 'deploy.userkey', 'deploy.group'
-	dirs '/var/data/xenia', '/var/log/xenia', '/var/data/export'
+	dirs '/var/data/xenia', '/var/log/xenia', '/var/data/export', '/opt/xenia'
 	user 'deploy'
 	group 'deploy'
 	mask '2774'			# drwrwxs--
