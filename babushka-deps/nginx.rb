@@ -58,7 +58,7 @@ dep 'deploy user can restart.nginx' do
 
 	met? { is_sudoer? }
 	meet {
-		sudo "cp /etc/sudoers /tmp/sudoers.new && echo "deploy ALL=NOPASSWD: /etc/init.d/nginx" >> /tmp/sudoers.new && visudo -c -f /tmp/sudoers.new && cp /tmp/sudoers.new /etc/sudoers && rm /tmp/sudoers.new"
+		sudo "cp /etc/sudoers /tmp/sudoers.new && echo 'deploy ALL=NOPASSWD: /etc/init.d/nginx' >> /tmp/sudoers.new && visudo -c -f /tmp/sudoers.new && cp /tmp/sudoers.new /etc/sudoers && rm /tmp/sudoers.new"
 	}
 end	
 	
