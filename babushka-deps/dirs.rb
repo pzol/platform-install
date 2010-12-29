@@ -25,4 +25,3 @@ meta 'dirs' do
 		}
 	}
 end
-
