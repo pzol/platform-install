@@ -7,7 +7,7 @@ dep 'deploy.user' do
 end
 
 dep 'root has deploy key' do
-	def generate_key; shell "mkdir -m 700 -p  /root/.ssh && ssh-keygen -N '' -f /root/.ssh/id_rsa -t rsa -q"; end
+	def generate_key; shell "mkdir -p  /root/.ssh && ssh-keygen -N '' -f /root/.ssh/id_rsa -t rsa -q"; end
 	def copy_root_key; shell "cat /root/.ssh/id_rsa.pub >> /home/deploy/.ssh/authorized_keys"; end
 	def root_key_exist?; File.exist?("/root/.ssh/id_rsa") && File.exist?("/root/.ssh/id_rsa.pub"); end
 	def deploy_has_root_key?; shell "grep \"`cat /root/.ssh/id_rsa.pub`\" /home/deploy/.ssh/authorized_keys"; end
