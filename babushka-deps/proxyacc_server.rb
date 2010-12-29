@@ -1,3 +1,3 @@
 dep 'proxyacc.server' do
-	requires 'mongodb.setup', 'nginx', 'xenia'#, 'varnish'
+	requires 'platform', 'mongodb.setup', 'nginx', 'xenia'#, 'varnish'
 end
