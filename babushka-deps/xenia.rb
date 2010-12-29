@@ -3,7 +3,6 @@ dep 'xenia' do
 	
 	met? { File.directory? "/opt/xenia/current" }
 	meet {
-		dir = ""
 		in_build_dir {|path|
 			if File.exist? "xenia"
 				log_shell "Updating repo", "cd xenia && git pull"
