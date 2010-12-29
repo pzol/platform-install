@@ -1,10 +1,8 @@
 dep 'platform', :for => :linux  do
-	requires 'ruby_with_gems',  'deploy.user', 'deploy.userkey', 'admin_tools'
+	requires 'ruby_with_gems',  'deploy.user', 'deploy.userkey', 'deploy.group', 'root has deploy key', 'admin_tools'
 end
 
-dep 'deploy.user' do
-	requires 'deploy.group', 'root has deploy key'
-end
+dep 'deploy.user'
 
 dep 'root has deploy key' do
 	def generate_key; shell "mkdir -p  /root/.ssh && ssh-keygen -N '' -f /root/.ssh/id_rsa -t rsa -q"; end
