@@ -26,7 +26,6 @@ dep '1.9.2 installed.rvm' do
 end
 
 dep 'rvm' do
-	setup { Kernel.exec "source /usr/local/rvm/scripts/rvm" }
   met? { raw_which 'rvm', shell('which rvm') }
 	meet { log("You must install rvm manually first, using a system-wide install!") }
 end
