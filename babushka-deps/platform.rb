@@ -1,9 +1,9 @@
 dep 'platform', :for => :linux  do
-	requires 'ruby_with_gems',  'deploy.user', 'admin_tools'
+	requires 'ruby_with_gems',  'deploy.user', 'deploy.userkey', 'admin_tools'
 end
 
 dep 'deploy.user' do
-	requires 'deploy.group', 'deploy.userkey', 'root has deploy key'
+	requires 'deploy.group', 'root has deploy key'
 end
 
 dep 'root has deploy key' do
