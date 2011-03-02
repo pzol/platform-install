@@ -6,8 +6,8 @@ meta :rvm do
       shell "rvm #{args}", :log => args['install']
     end
 
-		def ruby_version; '1.9.2-p136'; end 							# rvm  uses ruby-1.9.2-p136
-		def ruby_ruby_version; '1.9.2p136'; end						# ruby uses ruby 1.9.2 p136
+		def ruby_version; '1.9.2-p180'; end 							# rvm  uses ruby-1.9.2-p136
+		def ruby_ruby_version; '1.9.2p180'; end						# ruby uses ruby 1.9.2 p136
   }
 end
 
