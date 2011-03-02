@@ -32,7 +32,7 @@ dep 'mongodb.setup' do
 	def daemon_opts; var(:mongo_daemon_opts); end
 
 	setup {
-		define_var :mongo_daemon_opts, :message => "Provide additional options for the daemon like --master", :default => "--master"
+		define_var :mongo_daemon_opts, :message => "Provide additional options for the daemon like --master", :default => "--master --rest"
 	}
 
 	met? {
