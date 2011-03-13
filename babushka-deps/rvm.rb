@@ -22,7 +22,7 @@ dep '1.9.2 installed.rvm' do
 
   met? { rvm('list')["ruby-#{ruby_version}"] }
 	meet :on => :osx   do log("rvm install #{ruby_version}") { shell "~/.rvm/bin/rvm #{ruby_version}" } end
-	meet :on => :linux do log("rvm install #{ruby_version}") { shell "rvm install #{ruby_version}", :sudo => true } end
+	meet :on => :linux do log("rvm install #{ruby_version}") { shell "rvm package install readline; rvm install #{ruby_version} --with-readline-dir=$rvm_path/usr", :sudo => true } end
 end
 
 dep 'rvm' do
