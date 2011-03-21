@@ -8,6 +8,6 @@ server {
   passenger_min_instances 2;
 
   include 					/var/www/root/*/../nginx.conf;			# this includes all apps
-  rack_env 					development;
+  rack_env 					production;
 }
 
