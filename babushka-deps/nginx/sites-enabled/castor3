@@ -1,5 +1,5 @@
 server {
-    listen 10.117.104.222:8989;
+    listen 8989;
     keepalive_timeout    70;
     location = / {
         root /var/anx/hrc/var/Castor3/;
