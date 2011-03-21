@@ -11,7 +11,7 @@ end
 
 dep 'bundler.gem' do
 	requires '1.9.2.rvm'
-  installs 'bundler 1.0.7'
+  installs 'bundler 1.0.10'
   provides 'bundle'
 end
 

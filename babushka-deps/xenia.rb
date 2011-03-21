@@ -1,17 +1,17 @@
 dep 'xenia' do
 	requires 'platform', 'xenia_etc_environment', 'xenia.dirs', 'xenia_app', 'xenia.webservice'
 	
-	met? { File.directory? "/opt/xenia/current" }
-	meet {
-		in_build_dir {|path|
-			if File.exist? "xenia"
-				log_shell "Updating repo", "cd xenia && git pull"
-			else
-				log_shell "Cloning repo", "git clone --depth 1 git://git.anixe.pl/xenia.git && rvm rvmrc trust #{File.join(path, "xenia")} && cd xenia"
-			end
-		 
-			log_shell "Deploying", "cd xenia && cap deploy HOSTS=127.0.0.1"
-		}
+	# met? { File.directory? "/opt/xenia/current" }
+	# meet {
+	# 	in_build_dir {|path|
+	# 		if File.exist? "xenia"
+	# 			log_shell "Updating repo", "cd xenia && git pull"
+	# 		else
+	# 			log_shell "Cloning repo", "git clone --depth 1 git://git.anixe.pl/xenia.git && rvm rvmrc trust #{File.join(path, "xenia")} && cd xenia"
+	# 		end
+	# 	 
+	# 		log_shell "Deploying", "cd xenia && cap deploy HOSTS=127.0.0.1"
+	# 	}
 	}
 end
 
