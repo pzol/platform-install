@@ -12,7 +12,7 @@ dep 'xenia' do
 	# 	 
 	# 		log_shell "Deploying", "cd xenia && cap deploy HOSTS=127.0.0.1"
 	# 	}
-	}
+	# }
 end
 
 dep 'xenia_app' do
