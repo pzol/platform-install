@@ -1,3 +1,3 @@
 dep 'maint.server' do
-	requires 'platform', 'xenia', 'mongodb.setup'
+	requires 'platform', 'xenia'
 end
