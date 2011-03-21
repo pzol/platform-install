@@ -28,12 +28,33 @@ dep 'webserver.nginx' do
 end
 
 dep 'conf.nginx' do
-	requires 'deploy.user'
+	requires 'deploy.user', 'sites.nginx'
 	met? { File.exists? conf_path }
   meet { 
 		render_erb "nginx/nginx.conf", :to => conf_path, :sudo => true 
 		shell "touch #{nginx_prefix}/conf/access-list", :sudo => true
 	}
+end
+
+dep 'sites.nginx' do
+	requires 'sites-enabled.nginx', 'axis_resfinity_com.nginx', 'castor3.nginx'
+end
+
+dep 'axis_resfinity_com.nginx' do
+	def path; "#{nginx_prefix}/conf/sites-enabled/axis.resfinity.com"; end
+	met? { File.exists? path }
+	meet { render_erb "nginx/sites-enabled/axis.resfinity.com", :to => path, :sudo => true }
+end
+
+dep 'castor3.nginx' do
+	def path; "#{nginx_prefix}/conf/sites-enabled/castor3"; end
+	met? { File.exists? path }
+	meet { render_erb "nginx/sites-enabled/castor3", :to => path, :sudo => true }
+end
+
+dep 'sites-enabled.nginx' do
+	met? { File.exists? "#{nginx_prefix}/conf/sites-enabled" }
+	meet { shell "mkdir -p #{nginx_prefix}/conf/sites-enabled" }
 end
 
 dep 'init_d.nginx' do

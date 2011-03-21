@@ -1,0 +1,15 @@
+server {
+    listen 10.117.104.222:8989;
+    keepalive_timeout    70;
+    location = / {
+        root /var/anx/hrc/var/Castor3/;
+    access_log  /var/log/nginx/static.resfinity.com.access.log;
+    }
+
+    location /DocumentsDP/ {
+	alias /var/anx/hrc/var/Castor3/documents/;
+	autoindex on;
+    access_log  /var/log/nginx/static.resfinity.com.access.log;
+    }
+  }
+
