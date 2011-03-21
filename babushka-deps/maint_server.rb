@@ -1,3 +1,3 @@
 dep 'maint.server' do
-	requires 'platform', 'xenia'
+	requires 'platform', 'xenia', 'bms'
 end
