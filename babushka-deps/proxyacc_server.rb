@@ -1,3 +1,3 @@
 dep 'proxyacc.server' do
-	requires 'platform', 'xenia', 'bms', 'mongodb.setup'
+	requires 'platform', 'redis', 'xenia', 'bms', 'mongodb.setup'
 end
