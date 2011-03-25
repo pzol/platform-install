@@ -29,7 +29,7 @@ dep 'xenia.dirs' do
 	dirs '/var/data/xenia', '/var/log/xenia', '/var/data/export', '/opt/xenia', '/opt/xenia/releases', '/opt/xenia/shared', '/opt/xenia/shared/system',  '/opt/xenia/shared/log',  '/opt/xenia/shared/pids'
 	user 'deploy'
 	group 'deploy'
-	mask '2774'			# drwrwxs--
+	mask '774'			# drwrwxs--
 end
 
 dep 'xenia.webservice' do

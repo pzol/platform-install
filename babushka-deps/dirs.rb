@@ -2,7 +2,7 @@ meta 'dirs' do
 	accepts_list_for :dirs
 	accepts_value_for :user
 	accepts_value_for :group
-	accepts_value_for :mask		#TODO: currently must be 4 digits, ie 0774 and NOT 774
+	accepts_value_for :mask		
 
 	template {
 		def uid; @uid ||= shell("grep '^#{user}' /etc/passwd").split(":")[2].to_i; end
