@@ -12,7 +12,9 @@ meta 'userkey' do
 		def ssh_path; "#{home_path}/.ssh"; end
 		def authorized_keys_path; File.join(ssh_path, "authorized_keys"); end
 		def uid; @uid ||= shell("grep '^#{basename}' /etc/passwd").split(":")[2].to_i; end
-		def gid; @gid ||= shell("grep '^#{basename}' /etc/group").split(":")[2].to_i; end
+		def gid; 
+			@gid ||= shell("grep '^#{basename}' /etc/group").split(":")[2].to_i rescue 0
+		end
 		def stat(dir); File.lstat(dir); end
 		def permitted?; File.lstat(ssh_path).mode.to_s(8) == "40755"; end
 		def ownership?; stat(home_path).uid == uid && stat(home_path).gid == gid; end
