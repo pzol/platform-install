@@ -8,7 +8,7 @@ meta 'dirs' do
 		def uid; @uid ||= shell("grep '^#{user}' /etc/passwd").split(":")[2].to_i; end
 		def gid; @gid ||= shell("grep '^#{group}' /etc/group").split(":")[2].to_i; end
 		def stat(dir); File.lstat(dir); end
-		def permitted?(dir); stat(dir).mode.to_s(8) == "4#{mask}"; end
+		def permitted?(dir); stat(dir).mode.to_s(8) =~ /#{mask}$/; end
 		def exists?(dir); File.directory?(dir); end
 		def ownership?(dir); stat(dir).uid == uid && stat(dir).gid == gid; end
 		def create(dir); log_shell "Creating dir #{dir}", "mkdir -p -m #{mask} #{dir}", :sudo => true; end

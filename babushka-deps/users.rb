@@ -11,7 +11,9 @@ meta 'userkey' do
 		def home_path; "/home/#{basename}"; end
 		def ssh_path; "#{home_path}/.ssh"; end
 		def authorized_keys_path; File.join(ssh_path, "authorized_keys"); end
-		def uid; @uid ||= shell("grep '^#{basename}' /etc/passwd").split(":")[2].to_i; end
+		def uid
+			@uid ||= shell("grep '^#{basename}' /etc/passwd").split(":")[2].to_i rescue 0
+		end
 		def gid; 
 			@gid ||= shell("grep '^#{basename}' /etc/group").split(":")[2].to_i rescue 0
 		end
