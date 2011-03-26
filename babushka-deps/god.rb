@@ -3,7 +3,7 @@ meta 'god' do
 end
   
 dep 'god.gem' do
-	required '1.9.2.rvm'
+	requires '1.9.2.rvm'
 	installs 'god'
 	provides 'god'
 end
