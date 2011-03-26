@@ -31,6 +31,6 @@ end
 dep 'conf.god' do
   met? { File.exists? "/opt/god.rb" }
   meet { 
-		render_erb "god/god.rb", :to => '/opt/god.rb', :perms => '755', :sudo => true
+		render_erb "god/god.rb.erb", :to => '/opt/god.rb', :perms => '755', :sudo => true
   }
 end
