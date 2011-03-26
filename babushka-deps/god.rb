@@ -25,7 +25,7 @@ end
 
 dep 'started.god' do
   requires 'init_d.god', 'conf.god'
-	met? { log_shell("ps aux | grep 'bin/god' | grep -v grep")["bin/god"] rescue false }
+	met? { log_shell("ps aux | grep 'bin/god' | grep -v grep | wc -l")["1"] }
 	meet { shell "/etc/init.d/god start", :sudo => true }
 end
 
