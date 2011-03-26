@@ -1,5 +1,7 @@
 meta 'god' do
-  requires 'god.gem'
+  template {
+    requires 'god.gem'
+  }
 end
   
 dep 'god.gem' do
