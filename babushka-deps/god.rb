@@ -39,9 +39,6 @@ end
 
 dep 'conf.god' do
   def config_path; "/opt/god/god.rb"; end
-  before { shell('rm -rf /opt/god.rb') if File.exists? '/opt/god.rb' }    # removing old configuration file
   met? { File.exists? config_path}
-  meet { 
-		render_erb "god/god.rb.erb", :to => config_path, :perms => '744', :sudo => true
-  }
+  meet { render_erb "god/god.rb.erb", :to => config_path, :perms => '744', :sudo => true }
 end
