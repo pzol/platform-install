@@ -1,5 +1,5 @@
 dep 'platform', :for => :linux  do
-	requires 'ruby_with_gems',  'deploy.user', 'deploy.userkey', 'deploy.group', 'root has deploy key', 'admin_tools'
+	requires 'ruby_with_gems',  'deploy.user', 'deploy.userkey', 'deploy.group', 'root has deploy key', 'admin_tools', 'opt.dirs'
 end
 
 dep 'deploy.user'
@@ -17,3 +17,11 @@ end
 
 dep 'deploy.group'
 dep 'deploy.userkey'
+
+dep 'opt.dirs' do
+	requires 'deploy.user', 'deploy.group'
+	dirs '/opt'
+	user 'deploy'
+	group 'deploy'
+	mask '776'			# drwrwxs--
+end
