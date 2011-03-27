@@ -23,7 +23,7 @@ RETVAL=0
 case "$1" in
   start)
     echo -n "Starting $DESC: "
-    /usr/local/bin/rvmsudo "god -c $GOD_CONFIG -P /var/run/god.pid -l /var/log/god.log"
+    /bin/bash -l -c "god -c $GOD_CONFIG -P /var/run/god.pid -l /var/log/god.log"
     RETVAL=$?
     echo "$NAME."
     ;;
@@ -36,12 +36,12 @@ case "$1" in
   restart)
     echo -n "Restarting $DESC: "
     kill `cat /var/run/god.pid`
-    /usr/local/bin/rvmsudo "god -c $GOD_CONFIG -P /var/run/god.pid -l /var/log/god.log"
+    /bin/bash -l -c "god -c $GOD_CONFIG -P /var/run/god.pid -l /var/log/god.log"
     RETVAL=$?
     echo "$NAME."
     ;;
   status)
-    /usr/local/bin/rvmsudo "god status"
+    /bin/bash -l -c "god status"
     RETVAL=$?
     ;;
   *)
