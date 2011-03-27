@@ -33,7 +33,7 @@ end
 
 dep 'started.god' do
   requires 'init_d.god', 'conf.god'
-	met? { shell("ps -e -o pid,args | grep [g]od | wc -l")["1"] }
+	met? { shell("ps -e -o pid,args | grep [g]od | wc -l").to_i > 0 }
 	meet { shell "/etc/init.d/god start", :sudo => true }
 end
 
