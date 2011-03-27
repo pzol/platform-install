@@ -14,7 +14,7 @@ DESC=god
 
 set -e
 
-GOD_CONFIG=/opt/god.rb
+GOD_CONFIG=/opt/god/god.rb
 
 . /lib/lsb/init-functions
 
@@ -23,7 +23,7 @@ RETVAL=0
 case "$1" in
   start)
     echo -n "Starting $DESC: "
-    bash -l -c "god -c $GOD_CONFIG -P /var/run/god.pid -l /var/log/god.log"
+    /usr/local/bin/rvmsudo "god -c $GOD_CONFIG -P /var/run/god.pid -l /var/log/god.log"
     RETVAL=$?
     echo "$NAME."
     ;;
@@ -36,12 +36,12 @@ case "$1" in
   restart)
     echo -n "Restarting $DESC: "
     kill `cat /var/run/god.pid`
-    bash -l -c "god -c $GOD_CONFIG -P /var/run/god.pid -l /var/log/god.log"
+    /usr/local/bin/rvmsudo "god -c $GOD_CONFIG -P /var/run/god.pid -l /var/log/god.log"
     RETVAL=$?
     echo "$NAME."
     ;;
   status)
-    bash -l -c "god status"
+    /usr/local/bin/rvmsudo "god status"
     RETVAL=$?
     ;;
   *)

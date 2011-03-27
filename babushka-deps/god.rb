@@ -11,8 +11,16 @@ dep 'god.gem' do
 end
 
 dep 'god' do
-  requires 'god.gem', 'init_d.god', 'conf.god', 'started.god'
+  requires 'god.gem', 'god.dirs', 'init_d.god', 'conf.god', 'started.god'
 
+end
+
+dep 'god.dirs' do
+	requires 'deploy.user', 'deploy.group'
+	dirs '/opt/god', '/opt/god/conf.d'
+	user 'deploy'
+	group 'deploy'
+	mask '744'			# drwrwxs--
 end
 
 dep 'init_d.god' do
@@ -30,8 +38,10 @@ dep 'started.god' do
 end
 
 dep 'conf.god' do
-  met? { File.exists? "/opt/god.rb" }
+  def config_path; "/opt/god/god.rb"; end
+  before { shell('rm -rf /opt/god.rb') if File.exists? '/opt/god.rb' }    # removing old configuration file
+  met? { File.exists? config_path}
   meet { 
-		render_erb "god/god.rb.erb", :to => '/opt/god.rb', :perms => '755', :sudo => true
+		render_erb "god/god.rb.erb", :to => config_path, :perms => '744', :sudo => true
   }
 end
