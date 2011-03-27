@@ -32,5 +32,5 @@ end
 
 dep 'rvm_1.5.2' do
   met? { shell('rvm -v | awk \'$0 != "" {print $2}\'')["1.5.2"] }
-  meet { shell('rvm get 1.5.2') }
+  meet { shell('rvm get head && rvm get 1.5.2 && rvm reload') }
 end
