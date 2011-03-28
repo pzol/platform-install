@@ -17,7 +17,7 @@ meta 'nginx' do
 end
 
 dep 'webserver.nginx' do
-	requires 'libcurl4-openssl-dev.managed', 'passenger.gem'
+	requires 'libcurl4-openssl-dev.managed', 'passenger.gem', 'nginx_ruby.god'
 
 	met? { File.executable?(var(:nginx_prefix) / 'sbin/nginx') }
 	meet {
@@ -37,11 +37,11 @@ dep 'conf.nginx' do
 end
 
 dep 'sites.nginx' do
-	requires 'sites-enabled.nginx', 'axis_resfinity_com.nginx', 'castor3.nginx'
+	requires 'sites-enabled.nginx', 'ruby.nginx', 'castor3.nginx'
 end
 
-dep 'axis_resfinity_com.nginx' do
-	def path; "#{nginx_prefix}/conf/sites-enabled/axis.resfinity.com"; end
+dep 'ruby.nginx' do
+	def path; "#{nginx_prefix}/conf/sites-enabled/ruby"; end
 	met? { File.exists? path }
 	meet { render_erb "nginx/sites-enabled/axis.resfinity.com", :to => path, :sudo => true }
 end
@@ -99,4 +99,11 @@ dep 'nginx.dirs' do
 	user 'root'
 	group 'deploy'
 	mask '2774'			# drwrwxs--
+end
+
+dep 'nginx_ruby.god' do
+	requires 'god'
+	def config_path; '/opt/god/conf.d/nginx_ruby.rb'; end
+ 	met? { File.exists? config_path }
+  meet { render_erb "nginx/nginx_ruby_god.rb.erb", :to => config_path, :perms => '744', :sudo => true }
 end
