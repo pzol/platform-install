@@ -1,6 +1,7 @@
 God.watch do |w|
   w.pid_file = "/var/run/nginx.pid"
-  w.name = "nginx_ruby"
+  w.group = "nginx"
+  w.name = "ruby"
   w.interval = 30.seconds # default      
   w.start = "/etc/init.d/nginx start"
   w.stop = "kill `cat #{w.pid_file}`"
