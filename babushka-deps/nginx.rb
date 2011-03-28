@@ -43,7 +43,7 @@ end
 dep 'ruby.nginx' do
 	def path; "#{nginx_prefix}/conf/sites-enabled/ruby"; end
 	met? { File.exists? path }
-	meet { render_erb "nginx/ruby", :to => path, :sudo => true }
+	meet { render_erb "nginx/sites_enabled/ruby", :to => path, :sudo => true }
 end
 
 dep 'castor3.nginx' do
