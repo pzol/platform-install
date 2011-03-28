@@ -27,4 +27,18 @@ module God
   end
 end
 
+God::Contacts::Email.defaults do |d|
+  d.from_email = 'god@resfinity.com'
+  d.from_name = 'God'
+  d.delivery_method = :smtp
+  d.server_host = 'mail.anixe.pl'
+end
+
+God.contact(:email) do |c|
+  c.name = 'team'
+  c.group = 'team'
+  c.to_email = 'hotelteam@anixe.pl'
+end
+
+
 Dir.glob('/opt/god/conf.d/*.rb').each {|f| load f}
