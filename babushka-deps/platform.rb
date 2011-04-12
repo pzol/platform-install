@@ -23,5 +23,5 @@ dep 'opt.dirs' do
 	dirs '/opt'
 	user 'deploy'
 	group 'deploy'
-	mask '776'			# drwrwxs--
+	mask '775'			# drwrwxs--
 end
