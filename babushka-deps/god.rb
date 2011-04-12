@@ -17,7 +17,7 @@ end
 
 dep 'god.dirs' do
 	requires 'deploy.user', 'deploy.group'
-	dirs '/opt/god', '/opt/god/conf.d'
+	dirs '/opt/god', '/opt/god/conf.d', '/var/log'
 	user 'deploy'
 	group 'deploy'
 	mask '744'			# drwrwxs--
