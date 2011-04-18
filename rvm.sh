@@ -10,11 +10,11 @@ function is_rvm_installed {
 ### add the rvm script so it is run by all users and run it so it is available in the current session
 function rvm_install_to_profile {
 	cat > $rvm_install_path/rvm.sh <<EOF                                                                                              
-[[ -s "/usr/local/lib/rvm" ]] && . "/usr/local/lib/rvm" # This loads RVM into a shell session
+[[ -s "/usr/local/rvm/scripts/rvm" ]] && . "/usr/local/rvm/scripts/rvm" # This loads RVM into a shell session
 EOF
 	cp $rvm_install_path/rvm.sh /etc/profile.d/rvm.sh
 	chmod a+x /etc/profile.d/rvm.sh
-	source /usr/local/lib/rvm					# load rvm into the current session
+  source /usr/local/rvm/scripts/rvm   # load rvm into the current session 
 }
 
 function rvm_install_failed {
