@@ -33,8 +33,8 @@ function install_rvm {
 		apt-get -q update
 		echo "Downloading and installing system pre-requisites"
 		apt-get install -qq -y libruby1.8 zlib1g-dev libssl-dev libreadline5-dev build-essential libxslt-dev libxml2-dev curl git-core
-		curl -# -L http://bit.ly/rvm-install-system-wide > $rvm_install_path/rvm-install-system-wide
-		bash -l < $rvm_install_path/rvm-install-system-wide
+		curl -# -L https://rvm.beginrescueend.com/install/rvm > $rvm_install_path/rvm-install
+		bash -l < $rvm_install_path/rvm-install
 
 		usermod -a -G rvm $USER
 		rvm_install_to_profile
