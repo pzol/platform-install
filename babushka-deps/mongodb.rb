@@ -20,7 +20,7 @@ dep 'mongodb.setup' do
 	requires 'mongodb.dirs'
 
 	prefix "/opt/mongodb"
-	source "http://fastdl.mongodb.org/linux/mongodb-linux-#{`uname -m`.chomp}-1.6.5.tgz" 
+	source "http://fastdl.mongodb.org/linux/mongodb-linux-#{`uname -m`.chomp}-1.8.1.tgz" 
   provides 'mongod', 'mongo'
 
 	def copy_files; log_shell("Copying files", "cp -r * #{prefix}", :sudo => true); end
