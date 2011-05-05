@@ -8,7 +8,6 @@ server {
 
     location /DocumentsDP/ {
 	alias /var/anx/hrc/var/Castor3/documents/;
-	autoindex on;
     access_log  /var/log/nginx/static.resfinity.com.access.log;
     }
   }
