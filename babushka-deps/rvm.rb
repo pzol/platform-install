@@ -2,7 +2,7 @@ meta :rvm do
   template {
 		requires 'rvm'
 
-    def rvm(args) 
+    def rvm(args)
       shell "rvm #{args}", :log => args['install']
     end
 
@@ -18,7 +18,7 @@ dep '1.9.2.rvm' do
 end
 
 dep '1.9.2 installed.rvm' do
-  requires 'rvm', 'rvm_1.5.2'
+  requires 'rvm', 'rvm_1.6.9'
 
   met? { rvm('list')["ruby-#{ruby_version}"] }
 	meet :on => :osx   do log("rvm install #{ruby_version}") { shell "~/.rvm/bin/rvm #{ruby_version}" } end
@@ -26,11 +26,11 @@ dep '1.9.2 installed.rvm' do
 end
 
 dep 'rvm' do
-  met? { raw_which 'rvm', shell('which rvm') }
+  met? { which 'rvm' }
 	meet { log("You must install rvm manually first, using a system-wide install!") }
 end
 
-dep 'rvm_1.5.2' do
-  met? { shell('rvm -v | awk \'$0 != "" {print $2}\'')["1.5.2"] }
-  meet { shell('rvm get head && rvm get 1.5.2 && rvm reload') }
+dep 'rvm_1.6.9' do
+  met? { shell('rvm -v | awk \'$0 != "" {print $2}\'')["1.6.9"] }
+  meet { shell('rvm get head && rvm get 1.6.9 && rvm reload') }
 end
