@@ -1,7 +1,7 @@
 dep 'mongodb.dirs' do
 	dirs '/var/data/mongodb', '/var/log/mongodb', '/opt/mongodb'
-	user 'root'
-	group 'root'
+	user 'deploy'
+	group 'deploy'
 	mask '0775'
 end
 
@@ -20,13 +20,13 @@ dep 'mongodb.setup' do
 	requires 'mongodb.dirs'
 
 	prefix "/opt/mongodb"
-	source "http://fastdl.mongodb.org/linux/mongodb-linux-#{`uname -m`.chomp}-1.8.1.tgz" 
+	source "http://fastdl.mongodb.org/linux/mongodb-linux-#{`uname -m`.chomp}-1.8.1.tgz"
   provides 'mongod', 'mongo'
 
 	def copy_files; log_shell("Copying files", "cp -r * #{prefix}", :sudo => true); end
 	def init_d_exists?; File.exists?("/etc/init.d/mongodb"); end
 	def render_init_d
-		render_erb 'mongodb/mongodb.init.d.erb', :to => '/etc/init.d/mongodb', :perms => '755', :sudo => true 
+		render_erb 'mongodb/mongodb.init.d.erb', :to => '/etc/init.d/mongodb', :perms => '755', :sudo => true
 		sudo 'update-rc.d mongodb defaults'
 	end
 	def daemon_opts; var(:mongo_daemon_opts); end
@@ -41,9 +41,9 @@ dep 'mongodb.setup' do
 	}
 
 	preconfigure { sudo "mkdir -p #{prefix}" }
-  install { 
+  install {
 		copy_files 		unless provided?
 		render_init_d unless init_d_exists?
-		sudo "/etc/init.d/mongodb start" 
+		sudo "/etc/init.d/mongodb start"
 	}
 end
