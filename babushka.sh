@@ -20,7 +20,7 @@ function babushka_platform {
 }
 
 function babushka_mongo {
-    babushka -y 'mongo.setup'
+    babushka -y 'mongodb'
 }
 
 function babushka_list_servers {
