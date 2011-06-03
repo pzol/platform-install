@@ -21,6 +21,7 @@ DATA=/var/data/mongodb
 DAEMON=/opt/mongodb/bin/$NAME
 LOGFILE=/var/log/mongodb/mongod.log
 PIDFILE=/var/run/$NAME.pid
+LOCKFILE=$DATA/mongod.lock
 SCRIPTNAME=/etc/init.d/$NAME
 USER=deploy
 GROUP=deploy
@@ -83,6 +84,7 @@ do_stop()
   [ "$?" = 2 ] && return 2
   # Many daemons don't delete their pidfiles when they exit.
   rm -f $PIDFILE
+  rm -f $LOCKFILE
   return "$RETVAL"
 }
 
