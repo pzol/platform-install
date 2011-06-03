@@ -24,7 +24,7 @@ PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 USER=deploy
 GROUP=deploy
-DAEMON_ARGS="--quiet --dbpathz $DATA --logpath $LOGFILE --pidfilepath $PIDFILE --fork <%= daemon_opts %>"
+DAEMON_ARGS="--quiet --dbpath $DATA --logpath $LOGFILE --pidfilepath $PIDFILE --fork <%= daemon_opts %>"
 
 # Exit if the package is not installed
 [ -x "$DAEMON" ] || exit 0
