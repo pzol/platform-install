@@ -20,7 +20,7 @@ function babushka_platform {
 }
 
 function babushka_list_servers {
-	babushka -T | grep ".server'$" | sed 's/current dir://'
+	babushka -T | grep ".server'" | sed 's/current dir://'
 }
 
 function babushka_done {
