@@ -4,7 +4,7 @@ rvm_install_path="$install_dir/rvm_install"
 mkdir -p $rvm_install_path
 
 function is_rvm_installed {
-	[[ "`type rvm | head -n1`"	== "rvm is a function" ]]
+	[[ "`type rvm | head -1`"	== "rvm is a function" ]]
 }
 
 ### add the rvm script so it is run by all users and run it so it is available in the current session
@@ -34,7 +34,7 @@ function install_rvm {
 		echo "Downloading and installing system pre-requisites"
 		apt-get install -qq -y libruby1.8 zlib1g-dev libssl-dev libreadline5-dev build-essential libxslt-dev libxml2-dev curl git-core
 		curl -# -L https://rvm.beginrescueend.com/install/rvm -o $rvm_install_path/rvm-installer
-    chmod +x $rvm_install_path/rvm-installer
+                chmod +x $rvm_install_path/rvm-installer
 		bash -l -c "$rvm_install_path/rvm-installer 1.6.3"
 
 		usermod -a -G rvm $USER
