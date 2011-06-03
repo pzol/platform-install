@@ -19,8 +19,12 @@ function babushka_platform {
 	babushka -y 'platform'
 }
 
+function babushka_mongo {
+    babushka -y 'mongo.setup'
+}
+
 function babushka_list_servers {
-	babushka -T | grep -R ".server'$" | sed 's/current dir://'
+	babushka -T | grep ".server'$" | sed 's/current dir://'
 }
 
 function babushka_done {
@@ -35,6 +39,7 @@ function babushka_done {
 function babushka_run {
 	install_babushka && 
 	babushka_platform &&
+        babushka_mongo &&
 	babushka_done
 }
 
