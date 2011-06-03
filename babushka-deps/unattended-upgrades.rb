@@ -1,4 +1,4 @@
-require 'ftools'
+require 'fileutils'
 
 dep "unattended-upgrades" do
   requires 'unattended-upgrades.managed', "unattended-upgrades-50unattended-config", "unattended-upgrades-10periodic-config", "unattended-upgrades-50unattended-modificationrem", "unattended-upgrades-50unattended-modificationUNrem"
