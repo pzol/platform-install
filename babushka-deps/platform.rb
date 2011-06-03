@@ -1,5 +1,5 @@
 dep 'platform', :for => :linux  do
-	requires 'ruby_with_gems',  'deploy.user', 'deploy.userkey', 'deploy.group', 'root has deploy key', 'admin_tools', 'opt.dirs', 'unattended-upgrades'
+	requires 'ruby_with_gems',  'deploy.user', 'deploy.userkey', 'deploy.group', 'root has deploy key', 'admin_tools', 'opt.dirs', 'unattended-upgrades/*'
 end
 
 dep 'deploy.user'
