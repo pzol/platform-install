@@ -36,7 +36,7 @@ dep 'mongodb.setup' do
 	}
 
 	met? {
-		provided? and
+		in_path? and
 		init_d_exists?
 	}
 
