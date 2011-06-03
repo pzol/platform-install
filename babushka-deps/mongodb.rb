@@ -42,7 +42,7 @@ dep 'mongodb.setup' do
 
 	preconfigure { sudo "mkdir -p #{prefix}" }
   install {
-		copy_files 		unless provided?
+		copy_files 		unless in_path?
 		render_init_d unless init_d_exists?
 		sudo "/etc/init.d/mongodb start"
 	}
