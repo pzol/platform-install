@@ -20,17 +20,20 @@ meta 'userkey' do
 		def stat(dir); File.lstat(dir); end
 		def permitted?; File.lstat(ssh_path).mode.to_s(8) == "40755"; end
 		def ownership?; stat(home_path).uid == uid && stat(home_path).gid == gid; end
+    def ssh_ownership?; stat(ssh_path).uid == uid && stat(ssh_path).gid == gid; end
 		def fix_permissions; shell "chmod 755 -R #{ssh_path}"; end
 		def fix_ownership; shell "chown #{basename}:#{basename} -R #{home_path}"; end
+    def fix_ssh_ownership; shell "chown #{basename}:#{basename} -R #{ssh_path}"; end
 		def contains_key?; shell "grep '#{pub_key}' #{authorized_keys_path}"; end
 		def create_ssh_path; shell "mkdir -p -m 755 #{ssh_path}"; end
 		def append_pub_key; shell "echo '#{pub_key}' >> #{authorized_keys_path} && chown #{basename}:#{basename} #{authorized_keys_path}"; end
 
-		met? { contains_key? && permitted? && ownership? }
+		met? { contains_key? && permitted? && ownership? && ssh_ownership?}
 		meet {
 			create_ssh_path unless File.directory?(ssh_path)
 			fix_permissions unless permitted?
 			fix_ownership unless ownership?
+      fix_ssh_ownership unless ssh_ownership?
 			append_pub_key	unless contains_key?
 		}	
 	}
