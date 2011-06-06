@@ -16,7 +16,7 @@ function fix_permissions {
 function pull_source {
 	apt-get -qq install git-core
 	if [ ! -e "/opt/platform-install" ]; then
-		git clone git://github.com/pzol/platform-install.git
+		git clone git@git.anixe.pl:platform-install.git
 		cd platform-install
 	else
 		cd /opt/platform-install && git pull
