@@ -1,3 +1,3 @@
-dep 'payment.server' do
+dep 'paymentacc.server' do
 	requires 'platform', 'nginx'
 end
