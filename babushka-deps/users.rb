@@ -26,7 +26,7 @@ meta 'userkey' do
     def fix_ssh_ownership; shell "chown #{basename}:#{basename} -R #{ssh_path}"; end
 		def contains_key?; shell "grep '#{pub_key}' #{authorized_keys_path}"; end
     def contains_own_key?; File.exists?(File.join(ssh_path, "id_rsa.pub")); end
-    def create_own_key; shell "ssh-keygen -t rsa -f #{ssh_path}/id_rsa.pub"; end
+    def create_own_key; shell "su #{basename}"; shell "ssh-keygen -t rsa -q"; shell "exit" end
 		def create_ssh_path; shell "mkdir -p -m 755 #{ssh_path}"; end
 		def append_pub_key; shell "echo '#{pub_key}' >> #{authorized_keys_path} && chown #{basename}:#{basename} #{authorized_keys_path}"; end
 
