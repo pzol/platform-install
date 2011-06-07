@@ -1,3 +1,3 @@
-dep 'proxyacc.server' do
+dep 'payment.server' do
 	requires 'platform', 'nginx'
 end
