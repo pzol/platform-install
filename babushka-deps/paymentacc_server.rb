@@ -1,3 +1,3 @@
 dep 'paymentacc.server' do
-	requires 'platform', 'nginx'
+	requires 'platform', 'nginx', 'redis'
 end
