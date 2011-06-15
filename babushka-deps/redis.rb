@@ -7,7 +7,7 @@ dep 'redis.init_d' do
 end
 
 dep 'redis.dirs' do
-	dirs '/var/log/redis', '/var/lib/redis'
+	dirs '/var/log/redis', '/var/lib/redis', '/etc/redis'
 	user 'deploy'
 	group 'deploy'
 	mask '0775'
@@ -18,8 +18,15 @@ dep 'redis.started' do
 	meet { shell("/etc/init.d/redis-server start") }
 end
 
+dep 'redis.config' do
+	met? { File.exists? "/etc/redis/redis.conf" }
+  meet { 
+		render_erb "redis/redis.conf", :to => "/etc/redis/redis.conf", :sudo => true 
+	}
+end
+
 dep 'redis' do
-  requires 'redis-server.managed', 'redis.init_d', 'redis.dirs', 'redis.started'
+  requires 'redis-server.managed', 'redis.init_d', 'redis.dirs', 'redis.config', 'redis.started'
 end
 
 dep 'redis-server.managed' do
