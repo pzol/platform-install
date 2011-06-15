@@ -14,7 +14,7 @@ dep 'redis.dirs' do
 end
 
 dep 'redis.started' do
-	met? { shell("ps aux | grep redis | grep -v grep") }
+	met? { File.exists? "/var/run/redis.pid" }
 	meet { shell("/etc/init.d/redis-server start") }
 end
 
