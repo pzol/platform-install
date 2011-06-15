@@ -19,7 +19,7 @@ dep 'redis.dirs' do
 end
 
 dep 'redis' do
-  requires 'redis-server.managed', 'redis.init_d', 'dirs.redis', 'redis.started'
+  requires 'redis-server.managed', 'redis.init_d', 'redis.dirs', 'redis.started'
 end
 
 dep 'redis-server.managed' do
