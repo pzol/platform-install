@@ -12,7 +12,7 @@ dep 'redis.started' do
 end
 
 dep 'redis.dirs' do
-	dirs '/var/log/redis'
+	dirs '/var/log/redis', '/var/lib/redis'
 	user 'deploy'
 	group 'deploy'
 	mask '0775'
