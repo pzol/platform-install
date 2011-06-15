@@ -13,11 +13,13 @@ dep 'redis.dirs' do
 	mask '0775'
 end
 
+dep 'redis.started' do
+	met? { shell("ps aux | grep redis | grep -v grep") }
+	meet { shell("/etc/init.d/redis-server start") }
+end
+
 dep 'redis' do
-  requires 'redis-server.managed', 'redis.init_d', 'redis.dirs'
-  after {
-    shell "/etc/init.d/redis-server start", :sudo => true
-  }
+  requires 'redis-server.managed', 'redis.init_d', 'redis.dirs', 'redis.started'
 end
 
 dep 'redis-server.managed' do
