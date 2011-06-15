@@ -7,7 +7,7 @@ dep 'redis.init_d' do
 end
 
 dep 'redis.started' do
-	met? { shell("ps aux | grep redis") }
+	met? { shell("ps aux | grep redis-server") }
 	meet { shell "/etc/init.d/redis-server start", :sudo => true }
 end
 
