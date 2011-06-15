@@ -6,11 +6,6 @@ dep 'redis.init_d' do
 	}
 end
 
-dep 'redis.started' do
-	met? { shell("ps aux | grep redis-server") }
-	meet { shell "/etc/init.d/redis-server start", :sudo => true }
-end
-
 dep 'redis.dirs' do
 	dirs '/var/log/redis', '/var/lib/redis'
 	user 'deploy'
@@ -19,7 +14,10 @@ dep 'redis.dirs' do
 end
 
 dep 'redis' do
-  requires 'redis-server.managed', 'redis.init_d', 'redis.dirs', 'redis.started'
+  requires 'redis-server.managed', 'redis.init_d', 'redis.dirs'
+  after {
+    shell "/etc/init.d/redis-server start", :sudo => true
+  }
 end
 
 dep 'redis-server.managed' do
