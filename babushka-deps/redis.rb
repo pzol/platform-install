@@ -26,7 +26,7 @@ dep 'redis.config' do
 end
 
 dep 'redis.server' do
-  met? { Path.exists? "/opt/redis" }
+  met? { File.directory? "/opt/redis" }
   meet {
     shell 'mkdir /tmp/redis && cd /tmp/redis && wget http://redis.googlecode.com/files/redis-2.2.10.tar.gz && tar zxf redis-2.2.10.tar.gz && cd redis-2.2.10 && make PREFIX=/opt/redis && make install PREFIX=/opt/redis && rm /tmp/redis -rf'
   }
