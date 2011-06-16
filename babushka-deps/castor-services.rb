@@ -1,5 +1,5 @@
 dep 'castor-services' do
-	sudo "apt-get install freetds-dev"
+	sudo "apt-get -y install freetds-dev"
 end
 
 
