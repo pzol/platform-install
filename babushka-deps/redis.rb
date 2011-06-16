@@ -7,7 +7,7 @@ dep 'redis.init_d' do
 end
 
 dep 'redis.dirs' do
-	dirs '/var/log/redis', '/var/lib/redis', '/etc/redis'
+	dirs '/var/log/redis', '/var/lib/redis', '/etc/redis', '/opt/redis'
 	user 'deploy'
 	group 'deploy'
 	mask '0775'
@@ -25,10 +25,13 @@ dep 'redis.config' do
 	}
 end
 
-dep 'redis' do
-  requires 'redis-server.managed', 'redis.init_d', 'redis.dirs', 'redis.config', 'redis.started'
+dep 'redis.server' do
+  met? { Path.exists? "/opt/redis" }
+  meet {
+    shell 'mkdir /tmp/redis && cd /tmp/redis && wget http://redis.googlecode.com/files/redis-2.2.10.tar.gz && tar zxf redis-2.2.10.tar.gz && cd redis-2.2.10 && make PREFIX=/opt/redis && make install PREFIX=/opt/redis && rm /tmp/redis -rf'
+  }
 end
 
-dep 'redis-server.managed' do
-  provides 'redis-server' 
+dep 'redis' do
+  requires 'redis.server', 'redis.init_d', 'redis.dirs', 'redis.config', 'redis.started'
 end
