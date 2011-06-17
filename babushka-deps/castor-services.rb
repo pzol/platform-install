@@ -1,5 +1,5 @@
 dep 'castor-services' do
-	requres 'castor-services.dirs', 'castor-services.freetds'
+	requires 'castor-services.dirs', 'castor-services.freetds'
 end
 
 dep 'castor-services.freetds' do
