@@ -7,7 +7,7 @@ dep 'castor-services.freetds' do
 end
 
 dep 'castor-services.dirs' do
-	requires 'deploy.user', 'deploy.userkey', 'deploy.group'
+	requires 'deploy.user', 'deploy.group'
 	dirs '/var/log/castor_services', '/opt/castor_services', '/opt/castor_services/releases', '/opt/castor_services/shared', '/opt/castor_services/shared/system',  '/opt/castor_services/shared/log',  '/opt/castor_services/shared/pids'
 	user 'deploy'
 	group 'deploy'
